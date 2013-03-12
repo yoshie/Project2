@@ -6,6 +6,7 @@ var userids = 0;
 var online = {};
 exports.online = online; //needed if newTweet?
 
+
 // # User Server-Side Routes
 
 //GET rsegister
