@@ -1,5 +1,5 @@
 var users = require('../lib/users');
-var tweets = require('../lib/tweets')
+var tweets = require('../lib/tweets');
 
 exports.profile = function(req, res) {
   var username = req.params.user;
@@ -79,10 +79,8 @@ exports.following = function(req, res) {
 };
 
 exports.newtweet = function(req, res) {
-  var userid=req.cookies.userid;
-  var onlineUser=entry.online[userid];
-  console.log("Userid!:"+userid+" OnlineUser: "+onlineUser);
-  tweets.addTweet(tweets.tweets.length, onlineUser, req.body.message, null, null);
-  users.addUserT(onlineUser, tweets.tweets.length-1);
-  res.redirect('/'+onlineUser+'/home');
+  var user = req.params.user;
+  tweets.addTweet(tweets.tweets.length, user, req.body.message, null, null);
+  users.addUserT(user, tweets.tweets.length-1);
+  res.redirect('/'+user+'/home');
 };

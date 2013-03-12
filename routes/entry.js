@@ -56,13 +56,12 @@ exports.verify = function(req, res){
 }
 
 exports.codeCheck = function(req,res){
-    var formCode = req.body.code;
-    users.lookupCodeCheck(code, function(message){
+    users.lookupCodeCheck(req.body.code, function(message){
         if(message){
             req.flash('message', message);
-            res.redirect('verifyCode');
+            res.render('verifyCode',{title:"Tweetee", message:req.flash("message")});
         }else{
-            req.flash('message', "The code is correct! Login to begin.");
+            req.flash("msg", "The code is correct! Login to begin.");
             res.redirect('/');
         }
   });
